@@ -1,0 +1,105 @@
+INSERT INTO factura VALUES (1022,'10/05/2018',69000000, 600);
+INSERT INTO factura VALUES (1023,'10/06/2018',25000000, 601);
+INSERT INTO factura VALUES (1024,'12/06/2018',25600000, 602);
+INSERT INTO factura VALUES (1025,'12/06/2018',28300000, 601);
+INSERT INTO factura VALUES (1026,'13/06/2018',29300000, 600);
+INSERT INTO factura VALUES (1027,'13/06/2018',29900000, 603);
+INSERT INTO factura VALUES (1028,'13/06/2018',64000000, 604);
+INSERT INTO factura VALUES (1029,'10/05/2018',69000000, 600);
+INSERT INTO factura VALUES (1030,'10/06/2018',25000000, 601);
+INSERT INTO factura VALUES (1031,'12/06/2018',25600000, 602);
+INSERT INTO factura VALUES (1032,'12/06/2018',28300000, 601);
+INSERT INTO factura VALUES (1033,'13/06/2018',29300000, 600);
+INSERT INTO factura VALUES (1034,'13/06/2018',29900000, 603);
+INSERT INTO factura VALUES (1035,'13/06/2018',64000000, 604);
+
+INSERT INTO factura VALUES (1001,'10/05/2018',11111111, 600);
+INSERT INTO factura VALUES (1002,'10/05/2018',11111114, 601);
+INSERT INTO factura VALUES (1003,'12/05/2018',11111111, 602);
+INSERT INTO factura VALUES (1004,'12/05/2018',11111112, 601);
+INSERT INTO factura VALUES (1005,'13/05/2018',11111111, 600);
+INSERT INTO factura VALUES (1006,'13/05/2018',11111113, 603);
+INSERT INTO factura VALUES (1007,'13/05/2018',11111111, 604);
+------
+INSERT INTO detalla VALUES (70,750,1022,1001,5);
+INSERT INTO detalla VALUES (80,1200,1023,1011,2);
+INSERT INTO detalla VALUES (90,2750,1024,1012,5);
+INSERT INTO detalla VALUES (100,900,1025,1014,2);
+INSERT INTO detalla VALUES (110,950,1026,2001,1);
+INSERT INTO detalla VALUES (120,180,1027,2003,1);
+INSERT INTO detalla VALUES (130,750,1028,2004,5);
+INSERT INTO detalla VALUES (140,1200,1029,2005,2);
+INSERT INTO detalla VALUES (150,2750,1030,4001,5);
+INSERT INTO detalla VALUES (160,900,1031,2005,2);
+INSERT INTO detalla VALUES (170,950,1032,4003,1);
+INSERT INTO detalla VALUES (180,180,1033,4004,1);
+INSERT INTO detalla VALUES (190,950,1034,4005,1);
+INSERT INTO detalla VALUES (200,180,1035,4005,1);
+
+INSERT INTO detalla VALUES (1,750,1001,1001,5);
+INSERT INTO detalla VALUES (2,1200,1002,3002,2);
+INSERT INTO detalla VALUES (3,2750,1003,4005,5);
+INSERT INTO detalla VALUES (4,900,1004,2005,2);
+INSERT INTO detalla VALUES (5,950,1005,3005,1);
+INSERT INTO detalla VALUES (6,180,1006,5002,1);
+
+------------
+INSERT INTO departamento VALUES (101,'Ropa');
+INSERT INTO departamento VALUES (102,'deportes');
+INSERT INTO departamento VALUES (103,'Perfumeria');
+INSERT INTO departamento VALUES (104,'libreria');
+INSERT INTO departamento VALUES (105,'Comida');
+---
+INSERT INTO vendedor VALUES (600,'Juan Gomez',101);
+INSERT INTO vendedor VALUES (601,'Enrique Perez',102);
+INSERT INTO vendedor VALUES (602,'Mauricio Macril',103);
+INSERT INTO vendedor VALUES (603,'Estaban Quito',104);
+INSERT INTO vendedor VALUES (604,'Armando Barrera',105);
+---
+INSERT INTO proveedor VALUES ('El Millonario SA','Av Federico Lacrose 550',501);
+INSERT INTO proveedor VALUES ('Provedor+ SA','Av Martin garcia 350',502);
+INSERT INTO proveedor VALUES ('Provetodo SA','suipacha 550',503);
+INSERT INTO proveedor VALUES ('Perro SA','Av de mayo 1020',504);
+INSERT INTO proveedor VALUES ('Verga hermanos SA','Av Federico Lacrose 550',505);
+---
+INSERT INTO cliente VALUES (11111111, 'Aaaaa Bbbb');
+INSERT INTO cliente VALUES (11111112, 'Aaaca Bbab');
+INSERT INTO cliente VALUES (11111113, 'Aaaea Bbcb');
+INSERT INTO cliente VALUES (11111114, 'Aaara Bbeb');
+---
+
+INSERT INTO articulos VALUES (101,1001,'Mallas',150,'Ropa',501);
+INSERT INTO articulos VALUES (101,1002,'Medias',50,'Ropa',505);
+INSERT INTO articulos VALUES (101,1003,'Corpiños',100,'Ropa',502);
+INSERT INTO articulos VALUES (101,1004,'Boxers',100,'Ropa',505);
+INSERT INTO articulos VALUES (101,1005,'Sacos',550,'Ropa',505);
+INSERT INTO articulos VALUES (101,1011,'Mallas',140,'Ropa',501);
+INSERT INTO articulos VALUES (101,1012,'Medias',75,'Ropa',501);
+INSERT INTO articulos VALUES (101,1013,'Corpiños',120,'Ropa',503);
+INSERT INTO articulos VALUES (101,1014,'Boxers',90,'Ropa',501);
+INSERT INTO articulos VALUES (101,1015,'Sacos',500,'Ropa',504);
+--
+INSERT INTO articulos VALUES (102,2001,'Pesas',250,'Deportes',501);
+INSERT INTO articulos VALUES (102,2002,'Pelotas',300,'Deportes',505);
+INSERT INTO articulos VALUES (102,2003,'Raquetas',650,'Deportes',501);
+INSERT INTO articulos VALUES (102,2004,'Antiparras',150,'Deportes',501);
+INSERT INTO articulos VALUES (102,2005,'Bastones',450,'Deportes',501);
+---
+INSERT INTO articulos VALUES (103,3001,'Polo',950,'Perfumeria',505);
+INSERT INTO articulos VALUES (103,3002,'Axe',600,'Perfumeria',505);
+INSERT INTO articulos VALUES (103,3003,'Paco Rabanne',1050,'Perfumeria',505);
+INSERT INTO articulos VALUES (103,3004,'Bvlgari',1150,'Perfumeria',504);
+INSERT INTO articulos VALUES (103,3005,'Carolina Herrera',950,'Perfumeria',503);
+--
+INSERT INTO articulos VALUES (104,4001,'Agendas',150,'Libreria',501);
+INSERT INTO articulos VALUES (104,4002,'El Principito',180,'Libreria',502);
+INSERT INTO articulos VALUES (104,4003,'Gatos Guerreros',250,'Libreria',501);
+INSERT INTO articulos VALUES (104,4004,'Luna de Pluton',650,'Libreria',501);
+INSERT INTO articulos VALUES (104,4005,'La filosofia',550,'Libreria',501);
+--
+INSERT INTO articulos VALUES (105,5001,'Hamburguesas',150,'Comida',505);
+INSERT INTO articulos VALUES (105,5002,'Choripatys al vapor',180,'Comida',505);
+INSERT INTO articulos VALUES (105,5003,'Churros',20,'Comida',504);
+INSERT INTO articulos VALUES (105,5004,'Ensalada cesar',100,'Comida',504);
+INSERT INTO articulos VALUES (105,5005,'Milanesa de pollo',95,'Comida',503);
+---
