@@ -40,12 +40,12 @@ WITH (
 CREATE TABLE public.articulo
 (
     cod_depto integer NOT NULL,
-    cod_art integer NOT NULL,
+    cod_articulo integer NOT NULL,
     nomart character varying(30) COLLATE pg_catalog."default" NOT NULL,
     preciart integer NOT NULL,
     rubro character varying(30) COLLATE pg_catalog."default" NOT NULL,
     cuit_pro integer NOT NULL,
-    CONSTRAINT pk_articulo PRIMARY KEY (cod_art),
+    CONSTRAINT pk_articulo PRIMARY KEY (cod_articulo),
     CONSTRAINT fk_articulo_departamento FOREIGN KEY (cod_depto)
         REFERENCES public.departamento (cod_depto) MATCH SIMPLE
         ON UPDATE NO ACTION
@@ -61,10 +61,10 @@ WITH (
 
 CREATE TABLE public.vendedor
 (
-    nrovendedor integer NOT NULL,
+    id_vendedor integer NOT NULL,
     nyapeven character varying(30) COLLATE pg_catalog."default" NOT NULL,
     cod_depto integer NOT NULL,
-    CONSTRAINT pk_nrovendedor PRIMARY KEY (nrovendedor),
+    CONSTRAINT pk_nrovendedor PRIMARY KEY (id_vendedor),
     CONSTRAINT fk_nrodepa FOREIGN KEY (cod_depto)
         REFERENCES public.departamento (cod_depto) MATCH SIMPLE
         ON UPDATE NO ACTION
@@ -76,17 +76,17 @@ WITH (
 
 CREATE TABLE public.factura
 (
-    nrofactura integer NOT NULL,
+    nro_factura integer NOT NULL,
     fecha timestamp without time zone NOT NULL DEFAULT now(),
     dni integer NOT NULL,
-    nrovendedor integer NOT NULL,
-    CONSTRAINT pk_nrofactura PRIMARY KEY (nrofactura),
+    id_vendedor integer NOT NULL,
+    CONSTRAINT pk_nrofactura PRIMARY KEY (nro_factura),
     CONSTRAINT fk_dni FOREIGN KEY (dni)
         REFERENCES public.cliente (dni) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION,
-    CONSTRAINT fk_nrovendedor FOREIGN KEY (nrovendedor)
-        REFERENCES public.vendedor (nrovendedor) MATCH SIMPLE
+    CONSTRAINT fk_nrovendedor FOREIGN KEY (id_vendedor)
+        REFERENCES public.vendedor (id_vendedor) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
 )
@@ -96,18 +96,16 @@ WITH (
 
 CREATE TABLE public.detalla
 (
-    renglon integer NOT NULL,
     monto integer NOT NULL,
-    nrofactura integer NOT NULL,
+    nro_factura integer NOT NULL,
     cod_arti integer NOT NULL,
     cant_art integer NOT NULL,
-    CONSTRAINT pk_renglon PRIMARY KEY (renglon),
     CONSTRAINT fk_codarti FOREIGN KEY (cod_arti)
-        REFERENCES public.articulo (cod_art) MATCH SIMPLE
+        REFERENCES public.articulo (cod_articulo) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION,
-    CONSTRAINT fk_codfac FOREIGN KEY (nrofactura)
-        REFERENCES public.factura (nrofactura) MATCH SIMPLE
+    CONSTRAINT fk_codfac FOREIGN KEY (nro_factura)
+        REFERENCES public.factura (nro_factura) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
 )
