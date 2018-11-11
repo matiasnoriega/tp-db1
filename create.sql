@@ -19,7 +19,7 @@ WITH (
 CREATE TABLE public.departamento
 (
     cod_depto integer NOT NULL,
-    nomdep character varying(30) COLLATE pg_catalog."default" NOT NULL,
+    nombre character varying(30) COLLATE pg_catalog."default" NOT NULL,
     CONSTRAINT pk_departamento PRIMARY KEY (cod_depto)
 )
 WITH (
@@ -41,16 +41,16 @@ CREATE TABLE public.articulo
 (
     cod_depto integer NOT NULL,
     cod_articulo integer NOT NULL,
-    nomart character varying(30) COLLATE pg_catalog."default" NOT NULL,
-    preciart integer NOT NULL,
+    nombre character varying(30) COLLATE pg_catalog."default" NOT NULL,
+    precio float NOT NULL,
     rubro character varying(30) COLLATE pg_catalog."default" NOT NULL,
-    cuit_pro integer NOT NULL,
+    cuit integer NOT NULL,
     CONSTRAINT pk_articulo PRIMARY KEY (cod_articulo),
     CONSTRAINT fk_articulo_departamento FOREIGN KEY (cod_depto)
         REFERENCES public.departamento (cod_depto) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION,
-    CONSTRAINT fk_cuit_pro FOREIGN KEY (cuit_pro)
+    CONSTRAINT fk_cuit FOREIGN KEY (cuit)
         REFERENCES public.proveedor (cuit) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
@@ -62,7 +62,7 @@ WITH (
 CREATE TABLE public.vendedor
 (
     id_vendedor integer NOT NULL,
-    nyapeven character varying(30) COLLATE pg_catalog."default" NOT NULL,
+    nyape character varying(30) COLLATE pg_catalog."default" NOT NULL,
     cod_depto integer NOT NULL,
     CONSTRAINT pk_nrovendedor PRIMARY KEY (id_vendedor),
     CONSTRAINT fk_nrodepa FOREIGN KEY (cod_depto)
@@ -98,9 +98,9 @@ CREATE TABLE public.detalla
 (
     monto integer NOT NULL,
     nro_factura integer NOT NULL,
-    cod_arti integer NOT NULL,
-    cant_art integer NOT NULL,
-    CONSTRAINT fk_codarti FOREIGN KEY (cod_arti)
+    cod_articulo integer NOT NULL,
+    cantidad_articulo integer NOT NULL,
+    CONSTRAINT fk_codarti FOREIGN KEY (cod_articulo)
         REFERENCES public.articulo (cod_articulo) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION,
