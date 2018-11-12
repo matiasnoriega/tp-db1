@@ -8,7 +8,7 @@ DROP TABLE IF EXISTS factura CASCADE;
 
 CREATE TABLE public.cliente
 (
-    dni integer NOT NULL,
+    dni INTEGER NOT NULL,
     nyape character varying(30) COLLATE pg_catalog."default" NOT NULL,
     CONSTRAINT pk_dni PRIMARY KEY (dni)
 )
@@ -18,7 +18,7 @@ WITH (
 
 CREATE TABLE public.departamento
 (
-    cod_depto integer NOT NULL,
+    cod_depto INTEGER NOT NULL,
     nombre character varying(30) COLLATE pg_catalog."default" NOT NULL,
     CONSTRAINT pk_departamento PRIMARY KEY (cod_depto)
 )
@@ -30,7 +30,7 @@ CREATE TABLE public.proveedor
 (
     nombre character varying(30) COLLATE pg_catalog."default" NOT NULL,
     direccion character varying(30) COLLATE pg_catalog."default" NOT NULL,
-    cuit integer NOT NULL,
+    cuit INTEGER NOT NULL,
     CONSTRAINT pk_cuit PRIMARY KEY (cuit)
 )
 WITH (
@@ -39,12 +39,12 @@ WITH (
 
 CREATE TABLE public.articulo
 (
-    cod_depto integer NOT NULL,
-    cod_articulo integer NOT NULL,
+    cod_depto INTEGER NOT NULL,
+    cod_articulo INTEGER NOT NULL,
     nombre character varying(30) COLLATE pg_catalog."default" NOT NULL,
     precio float NOT NULL,
     rubro character varying(30) COLLATE pg_catalog."default" NOT NULL,
-    cuit integer NOT NULL,
+    cuit INTEGER NOT NULL,
     CONSTRAINT pk_articulo PRIMARY KEY (cod_articulo),
     CONSTRAINT fk_articulo_departamento FOREIGN KEY (cod_depto)
         REFERENCES public.departamento (cod_depto) MATCH SIMPLE
@@ -61,9 +61,9 @@ WITH (
 
 CREATE TABLE public.vendedor
 (
-    id_vendedor integer NOT NULL,
+    id_vendedor INTEGER NOT NULL,
     nyape character varying(30) COLLATE pg_catalog."default" NOT NULL,
-    cod_depto integer NOT NULL,
+    cod_depto INTEGER NOT NULL,
     CONSTRAINT pk_nrovendedor PRIMARY KEY (id_vendedor),
     CONSTRAINT fk_nrodepa FOREIGN KEY (cod_depto)
         REFERENCES public.departamento (cod_depto) MATCH SIMPLE
@@ -76,10 +76,10 @@ WITH (
 
 CREATE TABLE public.factura
 (
-    nro_factura integer NOT NULL,
+    nro_factura INTEGER NOT NULL,
     fecha timestamp without time zone NOT NULL DEFAULT now(),
-    dni integer NOT NULL,
-    id_vendedor integer NOT NULL,
+    dni INTEGER NOT NULL,
+    id_vendedor INTEGER NOT NULL,
     CONSTRAINT pk_nrofactura PRIMARY KEY (nro_factura),
     CONSTRAINT fk_dni FOREIGN KEY (dni)
         REFERENCES public.cliente (dni) MATCH SIMPLE
@@ -96,10 +96,10 @@ WITH (
 
 CREATE TABLE public.detalla
 (
-    monto integer NOT NULL,
-    nro_factura integer NOT NULL,
-    cod_articulo integer NOT NULL,
-    cantidad_articulo integer NOT NULL,
+    monto FLOAT NOT NULL,
+    nro_factura INTEGER NOT NULL,
+    cod_articulo INTEGER NOT NULL,
+    cantidad_articulo INTEGER NOT NULL,
     CONSTRAINT fk_codarti FOREIGN KEY (cod_articulo)
         REFERENCES public.articulo (cod_articulo) MATCH SIMPLE
         ON UPDATE NO ACTION
@@ -110,5 +110,25 @@ CREATE TABLE public.detalla
         ON DELETE NO ACTION
 )
 WITH (
+    OIDS = FALSE
+);
+
+CREATE TABLE public.pedido
+(
+    cod_pedido INTEGER NOT NULL,
+    cantidad_articulo INTEGER NOT NULL,
+    monto FLOAT NOT NULL DEFAULT 0,
+    cuit INTEGER NOT NULL,
+    cod_articulo INTEGER NOT NULL,
+    CONSTRAINT fk_cod_articulo FOREIGN KEY (cod_articulo)
+        REFERENCES public.articulo (cod_articulo) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT fk_cuit FOREIGN KEY (cuit)
+        REFERENCES public.proveedor (cuit) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+
+)WITH (
     OIDS = FALSE
 );
