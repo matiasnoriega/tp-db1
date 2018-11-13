@@ -1,38 +1,45 @@
 ﻿--a- Listar los datos completos de los proveedores a los que se les compra mas cantidad de articulos
 --del rubro "Comida" que la cantidad total de articulos vendidos por el vendedor "Juan Gomez".
 
-SELECT c.
+SELECT p.* FROM proveedor p
+WHERE (SELECT SUM(ped.cantidad_articulo) FROM pedido ped, articulo a
+    WHERE ped.cod_articulo = a.cod_articulo
+    AND ped.cuit = p.cuit
+    AND a.rubro = 'Comida')
+    > (SELECT SUM(d.cantidad_articulo) FROM detalla d, factura f, vendedor v
+            WHERE d.nro_factura = f.nro_factura
+            AND f.id_vendedor = v.id_vendedor
+            AND v.nyape = 'Juan Gomez');
 
 --b- Listar los datos completos de los clientes que compraron todos los articulos que le compramos
 --al proveedor "El Millonario SA" 
 
-SELECT c.* FROM cliente c, factura f, articulos a, detalla d
+SELECT c.* FROM cliente c, factura f, articulo a, detalla d
     WHERE c.dni = f.dni
-    AND f.nrofactura = d.nrofactura
-    AND a.cod_art IN(SELECT a.cod_art FROM articulos a, detalla d, factura f, proveedor p
-                        WHERE a.cod_art = d.cod_arti
-                        AND f.nrofactura = d.nrofactura
-                        AND a.cuit_pro = p.cuit
+    AND f.nro_factura = d.nro_factura
+    AND a.cod_articulo IN(SELECT a.cod_articulo FROM articulo a, detalla d, factura f, proveedor p
+                        WHERE a.cod_articulo = d.cod_articulo
+                        AND f.nro_factura = d.nro_factura
+                        AND a.cuit = p.cuit
                         AND p.nombre ilike 'el millo%'
-                            GROUP BY cod_art)
+                            GROUP BY a.cod_articulo)
         GROUP BY c.dni
             ORDER BY c.dni
 
 --c- Listar los datos completos de los clientes que no compraron nINgun articulo del rubro "Ropa"
 SELECT c.* FROM cliente c, factura f
     WHERE c.dni = f.dni
-    AND f.dni NOT IN (SELECT f1.dni FROM factura f1, detalla d, articulos a
-                            WHERE f1.nrofactura = d.nrofactura
-                            AND d.cod_arti = a.cod_art
-                            AND a.rubro ilike 'Ropa')
+    AND f.dni NOT IN (SELECT f1.dni FROM factura f1, detalla d, articulo a
+                            WHERE f1.nro_factura = d.nro_factura
+                            AND d.cod_articulo = a.cod_articulo
+                            AND a.rubro = 'Ropa')
         GROUP BY c.dni
             ORDER BY c.dni;
 
 
 --d- Listar los datos completos de los vendedores que le vendieron a mas de 50 clientes diferentes
 
-SELECT v.*, c.*, f.* FROM vendedor v, factura f, detalla d, cliente c
-    WHERE d.nrofactura = f.nrofactura
-        AND f.nrovendedor = v.nrovendedor
-        AND c.dni = f.dni
-            ORDER BY v.nrovendedor, nrofactura
+SELECT v.*, COUNT(DISTINCT f.dni) FROM vendedor v, factura f
+    WHERE v.id_vendedor = f.id_vendedor
+        GROUP BY v.id_vendedor
+            HAVING COUNT(DISTINCT f.dni) >= 50
