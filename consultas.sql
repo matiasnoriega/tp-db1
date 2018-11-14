@@ -2,15 +2,16 @@
 --del rubro "Comida" que la cantidad total de articulos vendidos por el vendedor "Juan Gomez".
 
 SELECT p.* FROM proveedor p
-WHERE (SELECT SUM(ped.cantidad_articulo) FROM pedido ped, articulo a
-    WHERE ped.cod_articulo = a.cod_articulo
+WHERE (SELECT SUM(cont.cantidad_articulo) FROM pedido ped, articulo a, contiene cont
+    WHERE cont.cod_articulo = a.cod_articulo
+    AND cont.cod_pedido = ped.cod_pedido
     AND ped.cuit = p.cuit
     AND a.rubro = 'Comida')
     > (SELECT SUM(d.cantidad_articulo) FROM detalla d, factura f, vendedor v
             WHERE d.nro_factura = f.nro_factura
             AND f.id_vendedor = v.id_vendedor
             AND v.nyape = 'Juan Gomez');
-
+            
 --b- Listar los datos completos de los clientes que compraron todos los articulos que le compramos
 --al proveedor "El Millonario SA" 
 
