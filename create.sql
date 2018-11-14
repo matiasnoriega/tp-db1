@@ -116,19 +116,33 @@ WITH (
 CREATE TABLE public.pedido
 (
     cod_pedido INTEGER NOT NULL,
-    cantidad_articulo INTEGER NOT NULL,
-    monto FLOAT NOT NULL DEFAULT 0,
     cuit INTEGER NOT NULL,
-    cod_articulo INTEGER NOT NULL,
-    CONSTRAINT fk_cod_articulo FOREIGN KEY (cod_articulo)
-        REFERENCES public.articulo (cod_articulo) MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION,
+    CONSTRAINT pk_pedido PRIMARY KEY (cod_pedido),
     CONSTRAINT fk_cuit FOREIGN KEY (cuit)
         REFERENCES public.proveedor (cuit) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
+)
+WITH (
+    OIDS = FALSE
+);
 
-)WITH (
+
+CREATE TABLE public.contiene
+(
+    cod_pedido INTEGER,
+    cod_articulo INTEGER,
+    cantidad_articulo INTEGER,
+    monto DOUBLE PRECISION,
+    CONSTRAINT fk_cod_articulo FOREIGN KEY (cod_articulo)
+        REFERENCES public.articulo (cod_articulo) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT fk_cod_pedido FOREIGN KEY (cod_pedido)
+        REFERENCES public.pedido (cod_pedido) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+WITH (
     OIDS = FALSE
 );
