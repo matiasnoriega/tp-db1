@@ -1,5 +1,4 @@
-﻿﻿
-INSERT INTO departamento VALUES (101,'Ropa');
+﻿﻿INSERT INTO departamento VALUES (101,'Ropa');
 INSERT INTO departamento VALUES (102,'deportes');
 INSERT INTO departamento VALUES (103,'Perfumeria');
 INSERT INTO departamento VALUES (104,'libreria');
@@ -264,13 +263,134 @@ INSERT INTO detalla VALUES (950,1096,2001,1);
 INSERT INTO detalla VALUES (180,1097,2003,1);
 INSERT INTO detalla VALUES (750,1098,2004,5);
 INSERT INTO detalla VALUES (999,1024,3005,1);
-
-INSERT INTO pedido VALUES (1001,5,1000,503,5005);
-INSERT INTO pedido VALUES (1002,2,205,503,5005);
-INSERT INTO pedido VALUES (1003,10,205,503,5005);
-INSERT INTO pedido VALUES (1004,7,700,504,5004);
-INSERT INTO pedido VALUES (1005,2,205,504,5004);
-INSERT INTO pedido VALUES (1006,9,120,501,1012);
-INSERT INTO pedido VALUES (1007,13,12,501,1014);
-INSERT INTO pedido VALUES (1008,50,2000,501,1001);
-INSERT INTO pedido VALUES (1009,1,1200,501,1012);
+------
+INSERT INTO pedido (cod_pedido,cuit)
+			VALUES (1001,501);
+INSERT INTO pedido (cod_pedido,cuit)
+			VALUES (1002,502);
+INSERT INTO pedido (cod_pedido,cuit)
+			VALUES (1003,503);
+INSERT INTO pedido (cod_pedido,cuit)
+			VALUES (1004,503);
+INSERT INTO pedido (cod_pedido,cuit)
+			VALUES (1005,503);
+INSERT INTO pedido (cod_pedido,cuit)
+			VALUES (1006,502);
+INSERT INTO pedido (cod_pedido,cuit)
+			VALUES (1007,504);
+INSERT INTO pedido (cod_pedido,cuit)
+			VALUES (1008,502);
+INSERT INTO pedido (cod_pedido,cuit)
+			VALUES (1009,504);
+INSERT INTO pedido (cod_pedido,cuit)
+			VALUES (1010,503);
+--
+INSERT INTO pedido (cod_pedido,cuit)
+			VALUES (1011,502);
+INSERT INTO pedido (cod_pedido,cuit)
+			VALUES (1012,502);
+INSERT INTO pedido (cod_pedido,cuit)
+			VALUES (1013,501);
+INSERT INTO pedido (cod_pedido,cuit)
+			VALUES (1014,502);
+INSERT INTO pedido (cod_pedido,cuit)
+			VALUES (1015,502);
+--
+INSERT INTO pedido (cod_pedido,cuit)
+			VALUES (1016,501);
+INSERT INTO pedido (cod_pedido,cuit)
+			VALUES (1017,502);
+INSERT INTO pedido (cod_pedido,cuit)
+			VALUES (1018,504);
+INSERT INTO pedido (cod_pedido,cuit)
+			VALUES (1019,501);
+INSERT INTO pedido (cod_pedido,cuit)
+			VALUES (1020,501);
+--
+INSERT INTO pedido (cod_pedido,cuit)
+			VALUES (1021,502);
+INSERT INTO pedido (cod_pedido,cuit)
+			VALUES (1022,505);
+INSERT INTO pedido (cod_pedido,cuit)
+			VALUES (1023,505);
+INSERT INTO pedido (cod_pedido,cuit)
+			VALUES (1024,503);
+INSERT INTO pedido (cod_pedido,cuit)
+			VALUES (1025,504);
+--
+INSERT INTO pedido (cod_pedido,cuit)
+			VALUES (1026,505);
+INSERT INTO pedido (cod_pedido,cuit)
+			VALUES (1027,502);
+INSERT INTO pedido (cod_pedido,cuit)
+			VALUES (1028,505);
+INSERT INTO pedido (cod_pedido,cuit)
+			VALUES (1029,502);
+INSERT INTO pedido (cod_pedido,cuit)
+			VALUES (1030,505);			
+------
+INSERT INTO contiene (cod_pedido,cod_articulo,cantidad_articulo,monto) 
+			VALUES (1001,1001,21000,30000);
+INSERT INTO contiene (cod_pedido,cod_articulo,cantidad_articulo,monto) 
+			VALUES (1002,1002,21000,20500);
+INSERT INTO contiene (cod_pedido,cod_articulo,cantidad_articulo,monto) 
+			VALUES (1003,1003,31000,20500);
+INSERT INTO contiene (cod_pedido,cod_articulo,cantidad_articulo,monto) 
+			VALUES (1004,1004,21000,70000);
+INSERT INTO contiene (cod_pedido,cod_articulo,cantidad_articulo,monto) 
+			VALUES (1005,1005,11000,20500);
+INSERT INTO contiene (cod_pedido,cod_articulo,cantidad_articulo,monto) 
+			VALUES (1006,1011,21000,12000);
+INSERT INTO contiene (cod_pedido,cod_articulo,cantidad_articulo,monto) 
+			VALUES (1007,1012,21000,12000);
+INSERT INTO contiene (cod_pedido,cod_articulo,cantidad_articulo,monto) 
+			VALUES (1008,1013,31000,20000);
+INSERT INTO contiene (cod_pedido,cod_articulo,cantidad_articulo,monto) 
+			VALUES (1009,1014,21000,12000);
+INSERT INTO contiene (cod_pedido,cod_articulo,cantidad_articulo,monto) 
+			VALUES (1010,1015,10000,30000);
+--			
+INSERT INTO contiene (cod_pedido,cod_articulo,cantidad_articulo,monto) 
+			VALUES (1011,2001,100000,20500);
+INSERT INTO contiene (cod_pedido,cod_articulo,cantidad_articulo,monto) 
+			VALUES (1012,2002,100000,20500);
+INSERT INTO contiene (cod_pedido,cod_articulo,cantidad_articulo,monto) 
+			VALUES (1013,2003,100000,70000);
+INSERT INTO contiene (cod_pedido,cod_articulo,cantidad_articulo,monto) 
+			VALUES (1014,2004,100000,20500);
+INSERT INTO contiene (cod_pedido,cod_articulo,cantidad_articulo,monto) 
+			VALUES (1015,2005,100000,12000);
+--
+INSERT INTO contiene (cod_pedido,cod_articulo,cantidad_articulo,monto) 
+			VALUES (1016,3001,100000,30000);
+INSERT INTO contiene (cod_pedido,cod_articulo,cantidad_articulo,monto) 
+			VALUES (1017,3002,100000,20500);
+INSERT INTO contiene (cod_pedido,cod_articulo,cantidad_articulo,monto) 
+			VALUES (1018,3003,100000,20500);
+INSERT INTO contiene (cod_pedido,cod_articulo,cantidad_articulo,monto) 
+			VALUES (1019,3004,100000,70000);
+INSERT INTO contiene (cod_pedido,cod_articulo,cantidad_articulo,monto) 
+			VALUES (1020,3005,100000,20500);
+--			
+INSERT INTO contiene (cod_pedido,cod_articulo,cantidad_articulo,monto) 
+			VALUES (1021,4001,100000,12000);
+INSERT INTO contiene (cod_pedido,cod_articulo,cantidad_articulo,monto) 
+			VALUES (1022,4002,100000,30000);
+INSERT INTO contiene (cod_pedido,cod_articulo,cantidad_articulo,monto) 
+			VALUES (1023,4003,100000,20500);
+INSERT INTO contiene (cod_pedido,cod_articulo,cantidad_articulo,monto) 
+			VALUES (1024,4004,100000,20500);
+INSERT INTO contiene (cod_pedido,cod_articulo,cantidad_articulo,monto) 
+			VALUES (1025,4005,100000,70000);
+--			
+INSERT INTO contiene (cod_pedido,cod_articulo,cantidad_articulo,monto) 
+			VALUES (1026,5001,100000,20500);
+INSERT INTO contiene (cod_pedido,cod_articulo,cantidad_articulo,monto) 
+			VALUES (1027,5002,100000,12000);
+INSERT INTO contiene (cod_pedido,cod_articulo,cantidad_articulo,monto) 
+			VALUES (1028,5003,100000,30000);
+INSERT INTO contiene (cod_pedido,cod_articulo,cantidad_articulo,monto) 
+			VALUES (1029,5004,100000,20500);
+INSERT INTO contiene (cod_pedido,cod_articulo,cantidad_articulo,monto) 
+			VALUES (1030,5005,100000,20500);
+------

@@ -1,5 +1,4 @@
-﻿--a- Listar los datos completos de los proveedores a los que se les compra mas cantidad de articulos
---del rubro "Comida" que la cantidad total de articulos vendidos por el vendedor "Juan Gomez".
+﻿--a- Listar los datos completos de los proveedores a los que se les compra mas cantidad de articulos del rubro "Comida" que la cantidad total de articulos vendidos por el vendedor "Juan Gomez".
 
 SELECT p.* FROM proveedor p
 WHERE (SELECT SUM(cont.cantidad_articulo) FROM pedido ped, articulo a, contiene cont
@@ -11,23 +10,27 @@ WHERE (SELECT SUM(cont.cantidad_articulo) FROM pedido ped, articulo a, contiene 
             WHERE d.nro_factura = f.nro_factura
             AND f.id_vendedor = v.id_vendedor
             AND v.nyape = 'Juan Gomez');
-            
---b- Listar los datos completos de los clientes que compraron todos los articulos que le compramos
---al proveedor "El Millonario SA" 
 
-SELECT c.* FROM cliente c, factura f, articulo a, detalla d
-    WHERE c.dni = f.dni
-    AND f.nro_factura = d.nro_factura
-    AND a.cod_articulo IN(SELECT a.cod_articulo FROM articulo a, detalla d, factura f, proveedor p
-                        WHERE a.cod_articulo = d.cod_articulo
-                        AND f.nro_factura = d.nro_factura
-                        AND a.cuit = p.cuit
-                        AND p.nombre ilike 'el millo%'
-                            GROUP BY a.cod_articulo)
-        GROUP BY c.dni
-            ORDER BY c.dni
+            
+--b- Listar los datos completos de los clientes que compraron todos los articulos que le compramos al proveedor "El Millonario SA" 
+
+SELECT c.* FROM clientes c
+    WHERE (SELECT COUNT(DISTINCT cont1.cod_articulo) FROM articulo a1, proveedor prov1, contiene cont1, pedido ped1
+                WHERE cont1.cod_pedido = ped1.cod_pedido
+                AND ped1.cuit = prov1.cuit
+                AND prov1.nombre = 'El Millonario SA'
+                 ) = 
+        (SELECT count(DISTINCT d.cod_articulo) FROM factura f, detalla d, contiene cont2, pedido ped2, proveedor prov2
+            WHERE c.dni = f.dni
+            AND f.nro_factura = d.nro_factura
+            AND d.cod_articulo = cont2.cod_articulo
+            AND cont2.cod_pedido = ped2.cod_pedido
+            AND ped2.cuit = prov2.cuit
+            AND prov2.cuit = 'El Millonario SA')
+
 
 --c- Listar los datos completos de los clientes que no compraron nINgun articulo del rubro "Ropa"
+
 SELECT c.* FROM cliente c, factura f
     WHERE c.dni = f.dni
     AND f.dni NOT IN (SELECT f1.dni FROM factura f1, detalla d, articulo a
