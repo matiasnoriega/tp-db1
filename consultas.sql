@@ -14,7 +14,7 @@ WHERE (SELECT SUM(cont.cantidad_articulo) FROM pedido ped, articulo a, contiene 
             
 --b- Listar los datos completos de los clientes que compraron todos los articulos que le compramos al proveedor "El Millonario SA" 
 
-SELECT c.* FROM clientes c
+SELECT c.* FROM cliente c
     WHERE (SELECT COUNT(DISTINCT cont1.cod_articulo) FROM articulo a1, proveedor prov1, contiene cont1, pedido ped1
                 WHERE cont1.cod_pedido = ped1.cod_pedido
                 AND ped1.cuit = prov1.cuit
@@ -26,7 +26,7 @@ SELECT c.* FROM clientes c
             AND d.cod_articulo = cont2.cod_articulo
             AND cont2.cod_pedido = ped2.cod_pedido
             AND ped2.cuit = prov2.cuit
-            AND prov2.cuit = 'El Millonario SA')
+            AND prov2.nombre = 'El Millonario SA')
 
 
 --c- Listar los datos completos de los clientes que no compraron nINgun articulo del rubro "Ropa"
