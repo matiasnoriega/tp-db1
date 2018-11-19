@@ -27,6 +27,23 @@ SELECT c.* FROM clientes c
             AND cont2.cod_pedido = ped2.cod_pedido
             AND ped2.cuit = prov2.cuit
             AND prov2.cuit = 'El Millonario SA')
+-- Segunda solución (la original explicada en clase)
+
+SELECT c.* FROM cliente c
+	WHERE NOT EXISTS(
+    	SELECT cont1.cod_articulo FROM contiene cont1, pedido ped1, proveedor prov1
+    		WHERE cont1.cod_pedido = ped1.cod_pedido
+                AND ped1.cuit = prov1.cuit
+                AND prov1.nombre = 'El Millonario SA'
+    			AND NOT EXISTS(
+                	SELECT 1 FROM factura f, detalla d, contiene cont2, pedido ped2, proveedor prov2
+                        WHERE c.dni = f.dni
+                        AND f.nro_factura = d.nro_factura
+                        AND d.cod_articulo = cont2.cod_articulo
+                        AND d.cod_articulo = cont1.cod_articulo
+                        AND cont2.cod_pedido = ped2.cod_pedido
+                        AND ped2.cuit = prov2.cuit
+                        AND prov2.nombre = 'El Millonario SA'))
 
 
 --c- Listar los datos completos de los clientes que no compraron nINgun articulo del rubro "Ropa"
